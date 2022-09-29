@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width" />
+<title>Mail  mza Olu turma</title>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js" integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js" integrity="sha512-01CJ9/g7e8cUmY0DFTMcUw/ikS799FHiOA0eyHsUWfOetgbx/t6oV4otQ5zXKQyIrQGTHSmRVPIgrgLcZi/WMA==" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container mt-4">
+<div class="row-12 text-center"><img src="logo.png" /></div>
+<div class="row col-12 mt-4">
+<div class="col-5  mt-4 float-left">
+<input type="text" class="input-imza" id="Name" placeholder="İsim Soyisim">
+</div>
+
+<div class="col-8 mt-4  float-left" id="">
+<input type="text" class="input-imza" id="title" placeholder="Ünvan">
+</div>
+<div class="col-4  mt-4 float-left">
+<input type="text" class="input-imza" placeholder="Mail" id="mail">
+</div>
+<div class="col-4  mt-4 float-left">
+<input type="text" class="input-imza" placeholder="GSM" id="gsm">
+</div>
+<div class="col-12 mt-4 float-left">
+<div class="btn btn-success w-100 " onclick="indir()">İmza Oluştur</div>
+</div>
+</div>
+<div class="row col-12 text-center mt-4" style="background-color:white;">
+<div id="imgcontent" style="width: 440px;height: 270px;background-color: white;">
+<div class="imza-content" id="imza-content" style="background-color:white;">
+
+
+<div class="imza-isim col-12" id="isim-metin">********** ******</div>
+<div class="imza-unvan col-12" id="unvan-metin">********** ******</div>
+<div class="imza-logo col-12" id="logoimg"></div>
+<div class="imza-iletisim col-12 row text-left" id="imza-ilsetisim"><span>Emniyet Evleri Mh.Özcan Sk. No:2/1 <br>
+34415 Kağıthane / İSTANBUL
+</br>
+<span style="color:red;"> Tel: </span><span id="imza-iletisim-sabithat">+90 850 420 04 44 </span><br>
+<span style="color:red;"> GSM: </span><span id="imza-iletisim-gsm">***********</span></br>
+<span id="iletisim-fax"><span style="color:red;"> Fax:</span>+90 212 339 30 99&nbsp; </span>
+<span id="imza-iletisim-mail" style="display:none;"> ********************</span><br>
+<span id="imza-iletisim-domain">www.teknosergroup.com</span>
+<div style="width: 407px;margin-top:0px;margin-left:0px;background-color: blue;height: 1px;" id="seperator">&nbsp;</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+<style>
+    body{
+        background-color:white;
+    }
+    .imza-content {
+        width: 440px;
+        height: 270px;
+        background-color: white;
+        margin: auto;
+        background-color: white;
+    }
+    .imza-logo{
+        width: 100%;
+    }
+    .imza-iletisim{
+        padding: 0;
+    margin-left: 15px;
+    font-size: 11px;
+
+}
+ 
+    .imza-isim{
+        margin-top:30px;
+
+        text-align: left;
+        font-size: 17px;;
+        float: left;
+   }
+    .imza-unvan{
+        margin-top:5px;
+
+        text-align: left;
+        font-size: 10px;
+        color: #444444;
+        float: left;
+
+    }
+    .imza-sirket{
+        margin-top:25px;
+   
+        text-align: left;
+        font-size: 17px;
+        color: black;
+        float: left;
+
+    }
+    .input-imza{
+        width: 100%;
+        line-height: 30px;
+        text-align: center;
+    }
+
+</style>
+<script>
+    $(document).ready(function () {
+        document.getElementById("logoimg").innerHTML = "<img src=\"logo.png\" style=\"float:left;margin-top:10px;margin-left:-2px;width:150px;\">";
+        $(".input-imza").keyup(function () {
+            document.getElementById("isim-metin").innerHTML = document.getElementById("Name").value;
+            document.getElementById("unvan-metin").innerHTML = document.getElementById("title").value;
+                        document.getElementById("imza-iletisim-mail").innerHTML =  document.getElementById("mail").value;
+            document.getElementById("imza-iletisim-gsm").innerHTML = document.getElementById("gsm").value;
+
+        });
+    });
+
+
+    function indir() {
+        domtoimage.toBlob(document.getElementById('imza-content'))
+            .then(function (blob) {
+                var a = document.getElementById("Name").value;
+                window.saveAs(blob, 'Mail-imza-' + a + '.jpg');
+            });
+    }
+</script>
+</html>
